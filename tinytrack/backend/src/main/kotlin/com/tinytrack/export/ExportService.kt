@@ -22,7 +22,17 @@ class ExportService(
     private val sleepLogRepository: SleepLogRepository
 ) {
     private val dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm").withZone(ZoneId.systemDefault())
-    private val dateFmt = DateTimeFormatter.ofPattern("yyyy-MM-dd").withZone(ZoneId.systemDefault())
+
+    private fun headerCell(text: String, font: Font): PdfPCell =
+        PdfPCell(Phrase(text, font)).also {
+            it.backgroundColor = Color(60, 100, 160)
+            it.setPadding(6f)
+        }
+
+    private fun bodyCell(text: String, font: Font): PdfPCell =
+        PdfPCell(Phrase(text, font)).also {
+            it.setPadding(4f)
+        }
 
     fun exportPdf(child: Child): ByteArray {
         val out = ByteArrayOutputStream()
@@ -50,17 +60,14 @@ class ExportService(
             val table = PdfPTable(floatArrayOf(2f, 1.5f, 1f, 2f, 3f))
             table.widthPercentage = 100f
             listOf("Date", "Type", "Value", "Unit", "Notes").forEach { h ->
-                table.addCell(PdfPCell(Phrase(h, headerFont)).apply {
-                    backgroundColor = Color(60, 100, 160)
-                    padding = 6f
-                })
+                table.addCell(headerCell(h, headerFont))
             }
             measurements.forEach { m ->
-                table.addCell(PdfPCell(Phrase(dtf.format(m.recordedAt), bodyFont)).apply { padding = 4f })
-                table.addCell(PdfPCell(Phrase(m.type.name, bodyFont)).apply { padding = 4f })
-                table.addCell(PdfPCell(Phrase(m.value.toPlainString(), bodyFont)).apply { padding = 4f })
-                table.addCell(PdfPCell(Phrase(m.unit, bodyFont)).apply { padding = 4f })
-                table.addCell(PdfPCell(Phrase(m.notes ?: "", bodyFont)).apply { padding = 4f })
+                table.addCell(bodyCell(dtf.format(m.recordedAt), bodyFont))
+                table.addCell(bodyCell(m.type.name, bodyFont))
+                table.addCell(bodyCell(m.value.toPlainString(), bodyFont))
+                table.addCell(bodyCell(m.unit, bodyFont))
+                table.addCell(bodyCell(m.notes ?: "", bodyFont))
             }
             document.add(table)
             document.add(Chunk.NEWLINE)
@@ -74,15 +81,15 @@ class ExportService(
             val table = PdfPTable(floatArrayOf(2f, 1.5f, 2f, 1.5f, 1.5f, 2f))
             table.widthPercentage = 100f
             listOf("Start", "Type", "End", "Amount (ml)", "Side", "Notes").forEach { h ->
-                table.addCell(PdfPCell(Phrase(h, headerFont)).apply { backgroundColor = Color(60, 100, 160); padding = 6f })
+                table.addCell(headerCell(h, headerFont))
             }
             feedings.take(100).forEach { f ->
-                table.addCell(PdfPCell(Phrase(dtf.format(f.startTime), bodyFont)).apply { padding = 4f })
-                table.addCell(PdfPCell(Phrase(f.type.name, bodyFont)).apply { padding = 4f })
-                table.addCell(PdfPCell(Phrase(f.endTime?.let { dtf.format(it) } ?: "-", bodyFont)).apply { padding = 4f })
-                table.addCell(PdfPCell(Phrase(f.amountMl?.toPlainString() ?: "-", bodyFont)).apply { padding = 4f })
-                table.addCell(PdfPCell(Phrase(f.side?.name ?: "-", bodyFont)).apply { padding = 4f })
-                table.addCell(PdfPCell(Phrase(f.notes ?: "", bodyFont)).apply { padding = 4f })
+                table.addCell(bodyCell(dtf.format(f.startTime), bodyFont))
+                table.addCell(bodyCell(f.type.name, bodyFont))
+                table.addCell(bodyCell(f.endTime?.let { dtf.format(it) } ?: "-", bodyFont))
+                table.addCell(bodyCell(f.amountMl?.toPlainString() ?: "-", bodyFont))
+                table.addCell(bodyCell(f.side?.name ?: "-", bodyFont))
+                table.addCell(bodyCell(f.notes ?: "", bodyFont))
             }
             document.add(table)
             document.add(Chunk.NEWLINE)
@@ -96,12 +103,12 @@ class ExportService(
             val table = PdfPTable(floatArrayOf(2.5f, 1.5f, 4f))
             table.widthPercentage = 100f
             listOf("Recorded At", "Type", "Notes").forEach { h ->
-                table.addCell(PdfPCell(Phrase(h, headerFont)).apply { backgroundColor = Color(60, 100, 160); padding = 6f })
+                table.addCell(headerCell(h, headerFont))
             }
             diapers.take(100).forEach { d ->
-                table.addCell(PdfPCell(Phrase(dtf.format(d.recordedAt), bodyFont)).apply { padding = 4f })
-                table.addCell(PdfPCell(Phrase(d.type.name, bodyFont)).apply { padding = 4f })
-                table.addCell(PdfPCell(Phrase(d.notes ?: "", bodyFont)).apply { padding = 4f })
+                table.addCell(bodyCell(dtf.format(d.recordedAt), bodyFont))
+                table.addCell(bodyCell(d.type.name, bodyFont))
+                table.addCell(bodyCell(d.notes ?: "", bodyFont))
             }
             document.add(table)
             document.add(Chunk.NEWLINE)
@@ -115,12 +122,12 @@ class ExportService(
             val table = PdfPTable(floatArrayOf(2.5f, 2.5f, 4f))
             table.widthPercentage = 100f
             listOf("Start", "End", "Notes").forEach { h ->
-                table.addCell(PdfPCell(Phrase(h, headerFont)).apply { backgroundColor = Color(60, 100, 160); padding = 6f })
+                table.addCell(headerCell(h, headerFont))
             }
             sleeps.take(100).forEach { s ->
-                table.addCell(PdfPCell(Phrase(dtf.format(s.startTime), bodyFont)).apply { padding = 4f })
-                table.addCell(PdfPCell(Phrase(s.endTime?.let { dtf.format(it) } ?: "-", bodyFont)).apply { padding = 4f })
-                table.addCell(PdfPCell(Phrase(s.notes ?: "", bodyFont)).apply { padding = 4f })
+                table.addCell(bodyCell(dtf.format(s.startTime), bodyFont))
+                table.addCell(bodyCell(s.endTime?.let { dtf.format(it) } ?: "-", bodyFont))
+                table.addCell(bodyCell(s.notes ?: "", bodyFont))
             }
             document.add(table)
         }
@@ -136,7 +143,6 @@ class ExportService(
         writer.writeNext(arrayOf("# TinyTrack Export — ${child.name}"))
         writer.writeNext(arrayOf(""))
 
-        // Measurements
         writer.writeNext(arrayOf("## MEASUREMENTS"))
         writer.writeNext(arrayOf("id", "type", "value", "unit", "recordedAt", "notes"))
         measurementRepository.findByChildIdOrderByRecordedAtDesc(child.id).forEach { m ->
@@ -144,7 +150,6 @@ class ExportService(
         }
         writer.writeNext(arrayOf(""))
 
-        // Feeding
         writer.writeNext(arrayOf("## FEEDING LOGS"))
         writer.writeNext(arrayOf("id", "type", "startTime", "endTime", "amountMl", "side", "notes"))
         feedingLogRepository.findByChildIdOrderByStartTimeDesc(child.id).forEach { f ->
@@ -152,7 +157,6 @@ class ExportService(
         }
         writer.writeNext(arrayOf(""))
 
-        // Diapers
         writer.writeNext(arrayOf("## DIAPER LOGS"))
         writer.writeNext(arrayOf("id", "type", "recordedAt", "notes"))
         diaperLogRepository.findByChildIdOrderByRecordedAtDesc(child.id).forEach { d ->
@@ -160,7 +164,6 @@ class ExportService(
         }
         writer.writeNext(arrayOf(""))
 
-        // Sleep
         writer.writeNext(arrayOf("## SLEEP LOGS"))
         writer.writeNext(arrayOf("id", "startTime", "endTime", "notes"))
         sleepLogRepository.findByChildIdOrderByStartTimeDesc(child.id).forEach { s ->
