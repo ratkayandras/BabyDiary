@@ -2,7 +2,7 @@ export type Language = "EN" | "HU";
 export type Gender = "MALE" | "FEMALE" | "OTHER";
 export type FamilyRole = "OWNER" | "MEMBER";
 export type MeasurementType = "WEIGHT" | "HEIGHT" | "HEAD_CIRCUMFERENCE";
-export type FeedingType = "BREAST" | "FORMULA" | "SOLID";
+export type FeedingType = "BREAST" | "FORMULA" | "SOLID" | "EXPRESSED";
 export type BreastSide = "LEFT" | "RIGHT" | "BOTH";
 export type DiaperType = "WET" | "DIRTY" | "BOTH" | "DRY";
 
@@ -58,6 +58,7 @@ export interface FeedingLog {
   startTime: string;
   endTime: string | null;
   amountMl: number | null;
+  formulaAmountMl: number | null;
   side: BreastSide | null;
   notes: string | null;
   createdAt: string;

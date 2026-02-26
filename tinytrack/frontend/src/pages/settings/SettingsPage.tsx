@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
@@ -12,7 +12,6 @@ import { authApi } from "@/api/auth";
 import { familiesApi } from "@/api/children";
 import type { Family, Language } from "@/types";
 import type { AxiosError } from "axios";
-import i18n from "@/i18n/index";
 
 export function SettingsPage() {
   const { t } = useTranslation();
@@ -23,6 +22,14 @@ export function SettingsPage() {
   const [language, setLanguage] = useState<Language>(user?.preferredLanguage ?? "EN");
   const [currentPw, setCurrentPw] = useState("");
   const [newPw, setNewPw] = useState("");
+
+  // Keep form in sync with auth context (handles initial hydration and external updates)
+  useEffect(() => {
+    if (user) {
+      setName(user.name);
+      setLanguage(user.preferredLanguage);
+    }
+  }, [user]);
   const [saveError, setSaveError] = useState<string | null>(null);
   const [saveSuccess, setSaveSuccess] = useState(false);
 
@@ -42,9 +49,7 @@ export function SettingsPage() {
       newPassword: newPw || undefined,
     }),
     onSuccess: (updated) => {
-      updateUser(updated);
-      i18n.changeLanguage(updated.preferredLanguage.toLowerCase());
-      localStorage.setItem("language", updated.preferredLanguage.toLowerCase());
+      updateUser(updated); // already calls syncLanguage internally
       setSaveSuccess(true);
       setSaveError(null);
       setCurrentPw("");
@@ -71,7 +76,7 @@ export function SettingsPage() {
           )}
           {saveSuccess && (
             <div className="text-sm text-green-700 bg-green-50 px-3 py-2 rounded-md">
-              Saved successfully!
+              {t("common.savedSuccessfully")}
             </div>
           )}
           <div className="space-y-2">
@@ -220,7 +225,7 @@ function InviteDialog({ open, familyId, onClose, onSuccess }: {
         </DialogHeader>
         {sent ? (
           <p className="text-sm text-green-700 bg-green-50 px-3 py-2 rounded-md">
-            Invitation sent!
+            {t("common.invitationSent")}
           </p>
         ) : (
           <div className="space-y-4">
@@ -234,6 +239,7 @@ function InviteDialog({ open, familyId, onClose, onSuccess }: {
                 placeholder="partner@example.com"
               />
             </div>
+
             <div className="flex gap-2 justify-end">
               <Button variant="outline" onClick={handleClose}>{t("common.cancel")}</Button>
               <Button onClick={() => mutation.mutate()} disabled={!email || mutation.isPending}>

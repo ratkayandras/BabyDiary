@@ -41,7 +41,7 @@ data class Measurement(
 
 // ─── Feeding Log ──────────────────────────────────────────────────────────────
 
-enum class FeedingType { BREAST, FORMULA, SOLID }
+enum class FeedingType { BREAST, FORMULA, SOLID, EXPRESSED }
 enum class BreastSide { LEFT, RIGHT, BOTH }
 
 @Entity
@@ -64,8 +64,13 @@ data class FeedingLog(
     @Column
     var endTime: Instant? = null,
 
+    /** For BREAST/EXPRESSED: mother's milk volume. For FORMULA: formula volume (legacy). */
     @Column(precision = 6, scale = 1)
     var amountMl: BigDecimal? = null,
+
+    /** Optional formula supplement (mainly for BREAST/EXPRESSED type combined feedings). */
+    @Column(name = "formula_amount_ml", precision = 6, scale = 1)
+    var formulaAmountMl: BigDecimal? = null,
 
     @Enumerated(EnumType.STRING)
     @Column(length = 10)

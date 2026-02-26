@@ -45,6 +45,7 @@ export const childrenApi = {
     startTime: string;
     endTime?: string;
     amountMl?: number;
+    formulaAmountMl?: number;
     side?: BreastSide;
     notes?: string;
   }) => apiClient.post<FeedingLog>(`/children/${childId}/feeding-logs`, data).then((r) => r.data),

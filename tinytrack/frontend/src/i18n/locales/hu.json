@@ -77,16 +77,22 @@
     "breast": "Szoptatás",
     "formula": "Tápszer",
     "solid": "Szilárd étel",
+    "expressed": "Lefejt tej",
     "startTime": "Kezdés ideje",
     "endTime": "Befejezés ideje",
-    "amount": "Mennyiség (ml)",
+    "amount": "Anyatej mennyiség (ml)",
+    "formulaAmount": "Tápszer mennyiség (ml)",
     "side": "Oldal",
     "left": "Bal",
     "right": "Jobb",
     "both": "Mindkettő",
     "notes": "Megjegyzések",
     "noLogs": "Még nincsenek etetési naplóbejegyzések",
-    "duration": "{{minutes}} perc"
+    "duration": "{{minutes}} perc",
+    "chart": "Napi etetési áttekintő",
+    "dailyIntake": "Napi bevitel (ml)",
+    "motherMilk": "Anyatej",
+    "formulaTotal": "Tápszer"
   },
   "diaper": {
     "title": "Pelenkák",
@@ -169,7 +175,9 @@
     "required": "Kötelező",
     "confirmAction": "Biztos vagy benne?",
     "yes": "Igen",
-    "no": "Nem"
+    "no": "Nem",
+    "savedSuccessfully": "Sikeresen mentve!",
+    "invitationSent": "Meghívó elküldve!"
   },
   "errors": {
     "networkError": "Hálózati hiba. Ellenőrizd a kapcsolatod.",

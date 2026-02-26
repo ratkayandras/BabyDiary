@@ -48,6 +48,7 @@ data class FeedingLogDto(
     val startTime: Instant,
     val endTime: Instant?,
     val amountMl: BigDecimal?,
+    val formulaAmountMl: BigDecimal?,
     val side: BreastSide?,
     val notes: String?,
     val createdAt: Instant
@@ -60,6 +61,7 @@ fun FeedingLog.toDto() = FeedingLogDto(
     startTime = startTime,
     endTime = endTime,
     amountMl = amountMl,
+    formulaAmountMl = formulaAmountMl,
     side = side,
     notes = notes,
     createdAt = createdAt
@@ -70,6 +72,7 @@ data class CreateFeedingLogRequest(
     @field:NotNull val startTime: Instant,
     val endTime: Instant? = null,
     val amountMl: BigDecimal? = null,
+    val formulaAmountMl: BigDecimal? = null,
     val side: BreastSide? = null,
     val notes: String? = null
 )

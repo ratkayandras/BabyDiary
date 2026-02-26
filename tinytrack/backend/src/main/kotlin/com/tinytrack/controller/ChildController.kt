@@ -109,7 +109,7 @@ class ChildController(
         val child = childService.findAndAuthorize(user.id, childId)
         return when (format.lowercase()) {
             "pdf" -> {
-                val bytes = exportService.exportPdf(child)
+                val bytes = exportService.exportPdf(child, user.preferredLanguage)
                 ResponseEntity.ok()
                     .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"${child.name}-report.pdf\"")
                     .contentType(MediaType.APPLICATION_PDF)

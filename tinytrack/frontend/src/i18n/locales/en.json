@@ -77,16 +77,22 @@
     "breast": "Breast",
     "formula": "Formula",
     "solid": "Solid Food",
+    "expressed": "Expressed Milk",
     "startTime": "Start Time",
     "endTime": "End Time",
-    "amount": "Amount (ml)",
+    "amount": "Milk Amount (ml)",
+    "formulaAmount": "Formula Amount (ml)",
     "side": "Side",
     "left": "Left",
     "right": "Right",
     "both": "Both",
     "notes": "Notes",
     "noLogs": "No feeding logs yet",
-    "duration": "{{minutes}} min"
+    "duration": "{{minutes}} min",
+    "chart": "Daily Feeding Overview",
+    "dailyIntake": "Daily Intake (ml)",
+    "motherMilk": "Mother's Milk",
+    "formulaTotal": "Formula"
   },
   "diaper": {
     "title": "Diapers",
@@ -169,7 +175,9 @@
     "required": "Required",
     "confirmAction": "Are you sure?",
     "yes": "Yes",
-    "no": "No"
+    "no": "No",
+    "savedSuccessfully": "Saved successfully!",
+    "invitationSent": "Invitation sent!"
   },
   "errors": {
     "networkError": "Network error. Please check your connection.",

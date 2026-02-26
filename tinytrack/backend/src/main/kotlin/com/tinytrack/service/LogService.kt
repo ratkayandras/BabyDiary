@@ -61,7 +61,7 @@ class LogService(
         val child = childService.findAndAuthorize(userId, childId)
         val log = feedingLogRepository.save(
             FeedingLog(child = child, type = req.type, startTime = req.startTime, endTime = req.endTime,
-                amountMl = req.amountMl, side = req.side, notes = req.notes)
+                amountMl = req.amountMl, formulaAmountMl = req.formulaAmountMl, side = req.side, notes = req.notes)
         )
         return log.toDto()
     }
