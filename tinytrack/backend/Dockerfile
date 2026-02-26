@@ -5,7 +5,7 @@ COPY settings.gradle.kts build.gradle.kts ./
 # Cache dependencies
 RUN gradle dependencies --no-daemon || true
 COPY src ./src
-RUN gradle bootJar --no-daemon -x test
+RUN gradle bootJar --no-daemon -x test --info 2>&1
 
 # Run stage
 FROM eclipse-temurin:21-jre-jammy
