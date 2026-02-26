@@ -68,9 +68,9 @@ export function GrowthChart({ data, title, unit, color = "#2563eb" }: GrowthChar
             domain={["auto", "auto"]}
           />
           <Tooltip
-            formatter={(val: number | null, name: string) => {
-              if (val === null || val === undefined) return ["-", name];
-              return [`${Number(val).toFixed(2)} ${unit}`, name];
+            formatter={(val, name) => {
+              if (val === null || val === undefined) return ["-", String(name)];
+              return [`${Number(val).toFixed(2)} ${unit}`, String(name)];
             }}
             labelFormatter={(label) => `${t("growth.ageMonths")}: ${label}m`}
           />
