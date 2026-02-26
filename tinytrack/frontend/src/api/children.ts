@@ -31,6 +31,7 @@ export const childrenApi = {
     type: MeasurementType;
     value: number;
     recordedAt: string;
+    inputUnit?: string;
     notes?: string;
   }) => apiClient.post<Measurement>(`/children/${childId}/measurements`, data).then((r) => r.data),
   deleteMeasurement: (childId: string, measurementId: string) =>

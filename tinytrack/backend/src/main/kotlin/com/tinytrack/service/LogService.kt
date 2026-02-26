@@ -27,12 +27,18 @@ class LogService(
 
     fun addMeasurement(userId: UUID, childId: UUID, req: CreateMeasurementRequest): MeasurementDto {
         val child = childService.findAndAuthorize(userId, childId)
-        val unit = when (req.type) {
-            MeasurementType.WEIGHT -> "kg"
-            MeasurementType.HEIGHT, MeasurementType.HEAD_CIRCUMFERENCE -> "cm"
+        val (value, unit) = when (req.type) {
+            MeasurementType.WEIGHT -> {
+                // Always store weight in kg; convert from g if needed
+                if (req.inputUnit == "g")
+                    req.value.divide(java.math.BigDecimal(1000)) to "kg"
+                else
+                    req.value to "kg"
+            }
+            MeasurementType.HEIGHT, MeasurementType.HEAD_CIRCUMFERENCE -> req.value to "cm"
         }
         val measurement = measurementRepository.save(
-            Measurement(child = child, type = req.type, value = req.value, unit = unit, recordedAt = req.recordedAt, notes = req.notes)
+            Measurement(child = child, type = req.type, value = value, unit = unit, recordedAt = req.recordedAt, notes = req.notes)
         )
         return measurement.toDto()
     }

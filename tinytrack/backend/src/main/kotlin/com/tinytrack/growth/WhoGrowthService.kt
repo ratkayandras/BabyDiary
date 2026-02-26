@@ -53,11 +53,10 @@ data class GrowthAnalysisResponse(
 )
 
 @Service
-class WhoGrowthService {
+class WhoGrowthService(private val mapper: ObjectMapper) {
 
     // Maps: "weight_boys", "weight_girls", "height_boys", etc.
     private val tables = mutableMapOf<String, List<WhoTableEntry>>()
-    private val mapper = ObjectMapper()
 
     @PostConstruct
     fun load() {

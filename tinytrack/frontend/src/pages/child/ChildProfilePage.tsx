@@ -155,6 +155,7 @@ function MeasurementsTab({ childId }: { childId: string }) {
   const { t } = useTranslation();
   const qc = useQueryClient();
   const [open, setOpen] = useState(false);
+  const [weightUnit, setWeightUnit] = useState<"g" | "kg">("g");
   const [form, setForm] = useState({ type: "WEIGHT" as MeasurementType, value: "", recordedAt: new Date().toISOString().slice(0, 16), notes: "" });
 
   const { data: measurements = [], isLoading } = useQuery({
@@ -167,6 +168,7 @@ function MeasurementsTab({ childId }: { childId: string }) {
       type: form.type,
       value: parseFloat(form.value),
       recordedAt: new Date(form.recordedAt).toISOString(),
+      inputUnit: form.type === "WEIGHT" ? weightUnit : undefined,
       notes: form.notes || undefined,
     }),
     onSuccess: () => {
@@ -185,7 +187,7 @@ function MeasurementsTab({ childId }: { childId: string }) {
     },
   });
 
-  const unitFor = (type: MeasurementType) => type === "WEIGHT" ? "kg" : "cm";
+  const unitFor = (type: MeasurementType) => type === "WEIGHT" ? weightUnit : "cm";
 
   return (
     <Card>
@@ -233,9 +235,33 @@ function MeasurementsTab({ childId }: { childId: string }) {
                 </SelectContent>
               </Select>
             </div>
+            {form.type === "WEIGHT" && (
+              <div className="space-y-2">
+                <Label>{t("measurements.unit")}</Label>
+                <div className="flex gap-2">
+                  <Button
+                    type="button"
+                    variant={weightUnit === "g" ? "default" : "outline"}
+                    size="sm"
+                    onClick={() => setWeightUnit("g")}
+                  >g</Button>
+                  <Button
+                    type="button"
+                    variant={weightUnit === "kg" ? "default" : "outline"}
+                    size="sm"
+                    onClick={() => setWeightUnit("kg")}
+                  >kg</Button>
+                </div>
+              </div>
+            )}
             <div className="space-y-2">
               <Label>{t("measurements.value")} ({unitFor(form.type)})</Label>
-              <Input type="number" step="0.001" value={form.value} onChange={(e) => setForm(f => ({ ...f, value: e.target.value }))} />
+              <Input
+                type="number"
+                step={form.type === "WEIGHT" && weightUnit === "g" ? "1" : "0.1"}
+                value={form.value}
+                onChange={(e) => setForm(f => ({ ...f, value: e.target.value }))}
+              />
             </div>
             <div className="space-y-2">
               <Label>{t("measurements.recordedAt")}</Label>

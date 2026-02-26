@@ -35,6 +35,7 @@ data class CreateMeasurementRequest(
     @field:NotNull val type: MeasurementType,
     @field:NotNull @field:Positive val value: BigDecimal,
     @field:NotNull val recordedAt: Instant,
+    val inputUnit: String? = null,  // "g" or "kg" for weight; ignored for height/head
     val notes: String? = null
 )
 
