@@ -68,25 +68,25 @@ class ChildController(
         val dob = child.dateOfBirth
         val gender = child.gender
 
-        fun analyze(type: MeasurementType): List<PercentileResult> {
+        fun analyze(type: MeasurementType): GrowthSeries {
             val typeKey = whoGrowthService.getTypeKey(type)
-            return measurementRepository
+            val measurements = measurementRepository
                 .findByChildIdAndTypeOrderByRecordedAtAsc(childId, type)
                 .map { m ->
                     val recordDate = m.recordedAt.atZone(ZoneId.systemDefault()).toLocalDate()
                     val ageMonths = whoGrowthService.ageInMonths(dob, recordDate)
-                    val bands = whoGrowthService.calculatePercentile(m.value.toDouble(), ageMonths, typeKey, gender)
-                        ?: PercentileBands(0.0, 0.0, 0.0, 0.0, 0.0)
                     val z = whoGrowthService.computeZScore(m.value.toDouble(), ageMonths, typeKey, gender)
-                    val percentile = z?.let { whoGrowthService.zScoreToPercentile(it) }
-                    PercentileResult(
+                    MeasurementPoint(
                         ageMonths = ageMonths,
                         value = m.value.toDouble(),
                         unit = m.unit,
-                        percentile = percentile,
-                        bands = bands
+                        percentile = z?.let { whoGrowthService.zScoreToPercentile(it) }
                     )
                 }
+            return GrowthSeries(
+                measurements = measurements,
+                bands = whoGrowthService.getFullBands(typeKey, gender)
+            )
         }
 
         return ResponseEntity.ok(

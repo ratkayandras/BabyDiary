@@ -44,12 +44,34 @@ data class PercentileBands(
     val p97: Double
 )
 
+// New response structure: full WHO reference curve + child's measurement points
+data class WhoBand(
+    val month: Int,
+    val p3: Double,
+    val p15: Double,
+    val p50: Double,
+    val p85: Double,
+    val p97: Double
+)
+
+data class MeasurementPoint(
+    val ageMonths: Int,
+    val value: Double,
+    val unit: String,
+    val percentile: Double?
+)
+
+data class GrowthSeries(
+    val measurements: List<MeasurementPoint>,
+    val bands: List<WhoBand>
+)
+
 data class GrowthAnalysisResponse(
     val childId: String,
     val childName: String,
-    val weight: List<PercentileResult>,
-    val height: List<PercentileResult>,
-    val headCircumference: List<PercentileResult>
+    val weight: GrowthSeries,
+    val height: GrowthSeries,
+    val headCircumference: GrowthSeries
 )
 
 @Service
@@ -102,6 +124,12 @@ class WhoGrowthService(private val mapper: ObjectMapper) {
         val d = 0.3989423 * Math.exp(-z * z / 2)
         val p = d * t * (0.3193815 + t * (-0.3565638 + t * (1.7814779 + t * (-1.8212560 + t * 1.3302744))))
         return if (z > 0) (1.0 - p) * 100 else p * 100
+    }
+
+    fun getFullBands(type: String, gender: Gender): List<WhoBand> {
+        val genderKey = if (gender == Gender.MALE) "boys" else "girls"
+        val table = tables["${type}_$genderKey"] ?: return emptyList()
+        return table.map { WhoBand(it.month, it.p3, it.p15, it.p50, it.p85, it.p97) }
     }
 
     fun getTypeKey(measurementType: MeasurementType): String = when (measurementType) {

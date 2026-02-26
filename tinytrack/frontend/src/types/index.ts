@@ -81,7 +81,8 @@ export interface SleepLog {
   createdAt: string;
 }
 
-export interface PercentileBands {
+export interface WhoBand {
+  month: number;
   p3: number;
   p15: number;
   p50: number;
@@ -89,20 +90,24 @@ export interface PercentileBands {
   p97: number;
 }
 
-export interface PercentileResult {
+export interface MeasurementPoint {
   ageMonths: number;
   value: number;
   unit: string;
   percentile: number | null;
-  bands: PercentileBands;
+}
+
+export interface GrowthSeries {
+  measurements: MeasurementPoint[];
+  bands: WhoBand[];
 }
 
 export interface GrowthAnalysis {
   childId: string;
   childName: string;
-  weight: PercentileResult[];
-  height: PercentileResult[];
-  headCircumference: PercentileResult[];
+  weight: GrowthSeries;
+  height: GrowthSeries;
+  headCircumference: GrowthSeries;
 }
 
 export interface AuthResponse {
