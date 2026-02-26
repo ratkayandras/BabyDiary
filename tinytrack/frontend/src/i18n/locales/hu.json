@@ -1,0 +1,182 @@
+{
+  "app": {
+    "name": "TinyTrack",
+    "tagline": "Babafejlődés Követő"
+  },
+  "nav": {
+    "dashboard": "Irányítópult",
+    "settings": "Beállítások",
+    "logout": "Kijelentkezés"
+  },
+  "auth": {
+    "login": "Bejelentkezés",
+    "register": "Regisztráció",
+    "email": "E-mail cím",
+    "password": "Jelszó",
+    "name": "Teljes Név",
+    "confirmPassword": "Jelszó megerősítése",
+    "forgotPassword": "Elfelejtett jelszó?",
+    "noAccount": "Nincs még fiókod?",
+    "haveAccount": "Már van fiókod?",
+    "loginTitle": "Üdvözlünk vissza",
+    "loginSubtitle": "Jelentkezz be a TinyTrack fiókodba",
+    "registerTitle": "Fiók létrehozása",
+    "registerSubtitle": "Kezdd el követni babád fejlődését",
+    "loggingIn": "Bejelentkezés...",
+    "registering": "Fiók létrehozása..."
+  },
+  "dashboard": {
+    "title": "Irányítópult",
+    "welcome": "Üdvözlünk, {{name}}!",
+    "noChildren": "Még nem adtál hozzá gyermeket",
+    "addFirstChild": "Add hozzá az első gyermeked a kezdéshez",
+    "addChild": "Gyermek hozzáadása",
+    "quickAdd": "Gyors hozzáadás",
+    "todayActivity": "Mai aktivitás",
+    "lastFeeding": "Utolsó etetés",
+    "lastDiaper": "Utolsó pelenkacsere",
+    "lastSleep": "Utolsó alvás",
+    "ago": "ezelőtt",
+    "noRecent": "Ma még nem rögzített"
+  },
+  "child": {
+    "name": "Gyermek neve",
+    "dateOfBirth": "Születési dátum",
+    "gender": "Nem",
+    "male": "Fiú",
+    "female": "Lány",
+    "other": "Egyéb",
+    "addChild": "Gyermek hozzáadása",
+    "editChild": "Gyermek szerkesztése",
+    "deleteChild": "Gyermek törlése",
+    "confirmDelete": "Biztosan törölni szeretnéd {{name}}-t? Ez minden adatát törli.",
+    "feedingReminder": "Etetési emlékeztető (óra)",
+    "photoUrl": "Fotó URL (opcionális)",
+    "ageMonths": "{{months}} hónapos",
+    "ageYearsMonths": "{{years}} év {{months}} hónap"
+  },
+  "measurements": {
+    "title": "Mérések",
+    "addMeasurement": "Mérés hozzáadása",
+    "type": "Típus",
+    "weight": "Testsúly",
+    "height": "Magasság",
+    "headCircumference": "Fejkerület",
+    "value": "Érték",
+    "unit": "Egység",
+    "recordedAt": "Mérés időpontja",
+    "notes": "Megjegyzések",
+    "noMeasurements": "Még nincsenek mérések rögzítve",
+    "growthChart": "Növekedési diagram",
+    "whoPercentiles": "WHO percentilisek"
+  },
+  "feeding": {
+    "title": "Etetés",
+    "addFeeding": "Etetés rögzítése",
+    "type": "Típus",
+    "breast": "Szoptatás",
+    "formula": "Tápszer",
+    "solid": "Szilárd étel",
+    "startTime": "Kezdés ideje",
+    "endTime": "Befejezés ideje",
+    "amount": "Mennyiség (ml)",
+    "side": "Oldal",
+    "left": "Bal",
+    "right": "Jobb",
+    "both": "Mindkettő",
+    "notes": "Megjegyzések",
+    "noLogs": "Még nincsenek etetési naplóbejegyzések",
+    "duration": "{{minutes}} perc"
+  },
+  "diaper": {
+    "title": "Pelenkák",
+    "addDiaper": "Pelenkacsere rögzítése",
+    "type": "Típus",
+    "wet": "Nedves",
+    "dirty": "Piszkos",
+    "both": "Nedves & Piszkos",
+    "dry": "Száraz",
+    "recordedAt": "Időpont",
+    "notes": "Megjegyzések",
+    "noLogs": "Még nincsenek pelenkanapló bejegyzések"
+  },
+  "sleep": {
+    "title": "Alvás",
+    "addSleep": "Alvás rögzítése",
+    "startTime": "Elalvás ideje",
+    "endTime": "Ébredés ideje",
+    "notes": "Megjegyzések",
+    "noLogs": "Még nincsenek alvásnapló bejegyzések",
+    "duration": "{{hours}} ó {{minutes}} p"
+  },
+  "family": {
+    "title": "Család",
+    "createFamily": "Család létrehozása",
+    "familyName": "Család neve",
+    "inviteMember": "Partner meghívása",
+    "inviteEmail": "Partner e-mail címe",
+    "members": "Tagok",
+    "role": {
+      "OWNER": "Tulajdonos",
+      "MEMBER": "Tag"
+    },
+    "noFamilies": "Még nincsenek családok",
+    "createFirst": "Hozz létre egy családot a kezdéshez"
+  },
+  "settings": {
+    "title": "Beállítások",
+    "account": "Fiók",
+    "language": "Nyelv",
+    "notifications": "Értesítések",
+    "familyManagement": "Családkezelés",
+    "english": "Angol",
+    "hungarian": "Magyar",
+    "saveChanges": "Módosítások mentése",
+    "saving": "Mentés...",
+    "changePassword": "Jelszó módosítása",
+    "currentPassword": "Jelenlegi jelszó",
+    "newPassword": "Új jelszó"
+  },
+  "growth": {
+    "title": "Növekedéselemzés",
+    "percentile": "Percentilis",
+    "p3": "P3",
+    "p15": "P15",
+    "p50": "P50 (medián)",
+    "p85": "P85",
+    "p97": "P97",
+    "yourChild": "A gyermeked",
+    "ageMonths": "Kor (hónap)"
+  },
+  "export": {
+    "title": "Exportálás",
+    "exportPdf": "PDF exportálás",
+    "exportCsv": "CSV exportálás",
+    "downloading": "Letöltés..."
+  },
+  "common": {
+    "save": "Mentés",
+    "cancel": "Mégse",
+    "delete": "Törlés",
+    "edit": "Szerkesztés",
+    "add": "Hozzáadás",
+    "close": "Bezárás",
+    "loading": "Betöltés...",
+    "error": "Valami hiba történt",
+    "retry": "Újrapróbálás",
+    "noData": "Nincs elérhető adat",
+    "optional": "opcionális",
+    "required": "Kötelező",
+    "confirmAction": "Biztos vagy benne?",
+    "yes": "Igen",
+    "no": "Nem"
+  },
+  "errors": {
+    "networkError": "Hálózati hiba. Ellenőrizd a kapcsolatod.",
+    "unauthorized": "Kérjük, jelentkezz be a folytatáshoz.",
+    "forbidden": "Nincs jogosultságod ehhez a művelethez.",
+    "notFound": "A kért erőforrás nem található.",
+    "validationError": "Kérjük, ellenőrizd az űrlapot.",
+    "generic": "Hiba történt. Kérjük, próbáld újra."
+  }
+}

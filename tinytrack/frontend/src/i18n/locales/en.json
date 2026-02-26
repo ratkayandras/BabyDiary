@@ -1,0 +1,182 @@
+{
+  "app": {
+    "name": "TinyTrack",
+    "tagline": "Baby Development Tracker"
+  },
+  "nav": {
+    "dashboard": "Dashboard",
+    "settings": "Settings",
+    "logout": "Logout"
+  },
+  "auth": {
+    "login": "Login",
+    "register": "Register",
+    "email": "Email",
+    "password": "Password",
+    "name": "Full Name",
+    "confirmPassword": "Confirm Password",
+    "forgotPassword": "Forgot password?",
+    "noAccount": "Don't have an account?",
+    "haveAccount": "Already have an account?",
+    "loginTitle": "Welcome back",
+    "loginSubtitle": "Sign in to your TinyTrack account",
+    "registerTitle": "Create account",
+    "registerSubtitle": "Start tracking your baby's development",
+    "loggingIn": "Signing in...",
+    "registering": "Creating account..."
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "welcome": "Welcome, {{name}}!",
+    "noChildren": "No children added yet",
+    "addFirstChild": "Add your first child to get started",
+    "addChild": "Add Child",
+    "quickAdd": "Quick Add",
+    "todayActivity": "Today's Activity",
+    "lastFeeding": "Last feeding",
+    "lastDiaper": "Last diaper",
+    "lastSleep": "Last sleep",
+    "ago": "ago",
+    "noRecent": "None recorded today"
+  },
+  "child": {
+    "name": "Child's Name",
+    "dateOfBirth": "Date of Birth",
+    "gender": "Gender",
+    "male": "Male",
+    "female": "Female",
+    "other": "Other",
+    "addChild": "Add Child",
+    "editChild": "Edit Child",
+    "deleteChild": "Delete Child",
+    "confirmDelete": "Are you sure you want to delete {{name}}? This will remove all data.",
+    "feedingReminder": "Feeding Reminder (hours)",
+    "photoUrl": "Photo URL (optional)",
+    "ageMonths": "{{months}} months",
+    "ageYearsMonths": "{{years}}y {{months}}m"
+  },
+  "measurements": {
+    "title": "Measurements",
+    "addMeasurement": "Add Measurement",
+    "type": "Type",
+    "weight": "Weight",
+    "height": "Height",
+    "headCircumference": "Head Circumference",
+    "value": "Value",
+    "unit": "Unit",
+    "recordedAt": "Recorded At",
+    "notes": "Notes",
+    "noMeasurements": "No measurements recorded yet",
+    "growthChart": "Growth Chart",
+    "whoPercentiles": "WHO Percentiles"
+  },
+  "feeding": {
+    "title": "Feeding",
+    "addFeeding": "Log Feeding",
+    "type": "Type",
+    "breast": "Breast",
+    "formula": "Formula",
+    "solid": "Solid Food",
+    "startTime": "Start Time",
+    "endTime": "End Time",
+    "amount": "Amount (ml)",
+    "side": "Side",
+    "left": "Left",
+    "right": "Right",
+    "both": "Both",
+    "notes": "Notes",
+    "noLogs": "No feeding logs yet",
+    "duration": "{{minutes}} min"
+  },
+  "diaper": {
+    "title": "Diapers",
+    "addDiaper": "Log Diaper",
+    "type": "Type",
+    "wet": "Wet",
+    "dirty": "Dirty",
+    "both": "Wet & Dirty",
+    "dry": "Dry",
+    "recordedAt": "Time",
+    "notes": "Notes",
+    "noLogs": "No diaper logs yet"
+  },
+  "sleep": {
+    "title": "Sleep",
+    "addSleep": "Log Sleep",
+    "startTime": "Fell Asleep",
+    "endTime": "Woke Up",
+    "notes": "Notes",
+    "noLogs": "No sleep logs yet",
+    "duration": "{{hours}}h {{minutes}}m"
+  },
+  "family": {
+    "title": "Family",
+    "createFamily": "Create Family",
+    "familyName": "Family Name",
+    "inviteMember": "Invite Partner",
+    "inviteEmail": "Partner's Email",
+    "members": "Members",
+    "role": {
+      "OWNER": "Owner",
+      "MEMBER": "Member"
+    },
+    "noFamilies": "No families yet",
+    "createFirst": "Create your first family to get started"
+  },
+  "settings": {
+    "title": "Settings",
+    "account": "Account",
+    "language": "Language",
+    "notifications": "Notifications",
+    "familyManagement": "Family Management",
+    "english": "English",
+    "hungarian": "Hungarian",
+    "saveChanges": "Save Changes",
+    "saving": "Saving...",
+    "changePassword": "Change Password",
+    "currentPassword": "Current Password",
+    "newPassword": "New Password"
+  },
+  "growth": {
+    "title": "Growth Analysis",
+    "percentile": "Percentile",
+    "p3": "P3",
+    "p15": "P15",
+    "p50": "P50 (median)",
+    "p85": "P85",
+    "p97": "P97",
+    "yourChild": "Your child",
+    "ageMonths": "Age (months)"
+  },
+  "export": {
+    "title": "Export",
+    "exportPdf": "Export PDF",
+    "exportCsv": "Export CSV",
+    "downloading": "Downloading..."
+  },
+  "common": {
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "add": "Add",
+    "close": "Close",
+    "loading": "Loading...",
+    "error": "Something went wrong",
+    "retry": "Retry",
+    "noData": "No data available",
+    "optional": "optional",
+    "required": "Required",
+    "confirmAction": "Are you sure?",
+    "yes": "Yes",
+    "no": "No"
+  },
+  "errors": {
+    "networkError": "Network error. Please check your connection.",
+    "unauthorized": "Please log in to continue.",
+    "forbidden": "You don't have permission to do that.",
+    "notFound": "The requested resource was not found.",
+    "validationError": "Please check the form for errors.",
+    "generic": "An error occurred. Please try again."
+  }
+}
